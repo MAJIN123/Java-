@@ -1,15 +1,13 @@
 /**
  * Created by Maloney on 17-4-10.
  */
-import edu.princeton.cs.algs4.StdRandom;
-import edu.princeton.cs.algs4.StdStats;
 import edu.princeton.cs.algs4.WeightedQuickUnionUF;
-
+import edu.princeton.cs.algs4.StdOut;
 public class Percolation {
-    private boolean[][] OpenState;
+    private boolean[][] OpenState;      // the state of every side
     private WeightedQuickUnionUF FirstConnectState;
     private WeightedQuickUnionUF SecondConnectState;
-    private int N=0;
+    private int N=0;        // row = N
 
     // create n-by-n grid,with all sites blocked;
     public Percolation(int n){
@@ -17,8 +15,8 @@ public class Percolation {
             throw new IllegalArgumentException();
         this.N=n;
         OpenState=new boolean[n][n];
-        for(int i=0;i<n;++i)
-            for(int j=0;j<n;++j)
+        for (int i=0;i<n;++i)
+            for (int j=0;j<n;++j)
                 OpenState[i][j]=false;
         FirstConnectState=new WeightedQuickUnionUF((n*n)+2);
         SecondConnectState=new WeightedQuickUnionUF((n*n)+1);
@@ -41,7 +39,7 @@ public class Percolation {
             SecondConnectState.union(N*N,self);
         }
         if(row==N)          // if last line
-            SecondConnectState.union(N*N,self);
+            FirstConnectState.union(N*N+1,self);
         if(row>1&&isOpen(row-1, col)){
             FirstConnectState.union(self,up);
             SecondConnectState.union(self,up);
@@ -78,8 +76,8 @@ public class Percolation {
     // number of open sites
     public     int numberOfOpenSites(){
         int count=0;
-        for(int i=0;i<N;++i)
-            for(int j=0;j<N;++j)
+        for (int i=0;i<N;++i)
+            for (int j=0;j<N;++j)
                 if(isOpen(i,j))
                     count++;
         return count;
@@ -106,8 +104,8 @@ public class Percolation {
         percolation.open(4, 4);
         percolation.open(4, 5);
 
-        System.out.println("is (5,1) full?:" + percolation.isFull(5, 1));
-        System.out.println("is (5,5) full?:" + percolation.isFull(5, 5));
-        System.out.println("is percolation?:" + percolation.percolates());
+        StdOut.println("is (5,1) full?:" + percolation.isFull(5, 1));
+        StdOut.println("is (5,5) full?:" + percolation.isFull(5, 5));
+        StdOut.println("is percolation?:" + percolation.percolates());
     }
 }
