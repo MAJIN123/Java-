@@ -24,7 +24,7 @@ public class Percolation {
 
     // open site (row, col) if is not open already
     public    void open(int row, int col){
-        if(row<1||col<1||row>N||row>N)
+        if(row<1||col<1||row>N||col>N)
             throw new java.lang.IndexOutOfBoundsException();
         OpenState[row-1][col-1]=true;
 
@@ -60,14 +60,14 @@ public class Percolation {
 
     // is site (row, col) open?
     public boolean isOpen(int row, int col){
-        if(row<1||col<1||row>N||row>N)
+        if(row<1||col<1||row>N||col>N)
             throw new java.lang.IndexOutOfBoundsException();
         return OpenState[row-1][col-1];
     }
 
     // is site (row, col) full?
     public boolean isFull(int row, int col){
-        if(row<1||col<1||row>N||row>N)
+        if(row<1||col<1||row>N||col>N)
             throw new java.lang.IndexOutOfBoundsException();
         int self=(row-1)*N+col-1;
         return SecondConnectState.connected(self,N*N);

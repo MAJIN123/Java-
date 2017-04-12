@@ -1,7 +1,6 @@
 /**
  * Created by Maloney on 17-4-10.
  */
-import edu.princeton.cs.algs4.StaticSETofInts;
 import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
