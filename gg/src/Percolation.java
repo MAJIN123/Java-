@@ -7,7 +7,7 @@ public class Percolation {
     private boolean[][] OpenState;      // the state of every side
     private WeightedQuickUnionUF FirstConnectState;
     private WeightedQuickUnionUF SecondConnectState;
-    private int N=0;        // row = N
+    private int N;        // row = N
 
     // create n-by-n grid,with all sites blocked;
     public Percolation(int n){
@@ -78,8 +78,8 @@ public class Percolation {
         int count=0;
         for (int i=0;i<N;++i)
             for (int j=0;j<N;++j)
-                if(isOpen(i,j))
-                    count++;
+                if(OpenState[i][j]==true)
+                    count+=1;
         return count;
     }
 
